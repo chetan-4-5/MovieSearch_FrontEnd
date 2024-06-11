@@ -39,7 +39,7 @@ const MovieDetails = () => {
         }
 
         try {
-            await axios.post(`http://localhost:5000/api/playlists/public/add/${id}`, {}, {
+            await axios.post(`https://moviesearch-backend-b97z.onrender.com/api/playlists/public/add/${id}`, {}, {
                 headers: {
                     'x-auth-token': token
                 }
@@ -68,7 +68,7 @@ const MovieDetails = () => {
         }
 
         try {
-            await axios.post(`http://localhost:5000/api/playlists/private/add/${id}`, {}, {
+            await axios.post(`https://moviesearch-backend-b97z.onrender.com/api/playlists/private/add/${id}`, {}, {
                 headers: {
                     'x-auth-token': token
                 }
