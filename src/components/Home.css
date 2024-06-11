@@ -1,0 +1,19 @@
+/* src/components/Home.css */
+.home-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.card img {
+    height: 400px;
+    object-fit: cover;
+}
+
+.delete-button {
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    --bs-btn-font-size: 4.3px !important;
+    float: right;
+}

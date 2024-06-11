@@ -1,0 +1,11 @@
+/* src/components/MovieDetails.css */
+.movie-details-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.movie-details-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
