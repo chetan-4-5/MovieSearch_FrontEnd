@@ -15,9 +15,6 @@ const Home = () => {
     const [playlists, setPlaylists] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [selectedPlaylist, setSelectedPlaylist] = useState(null);
-    const [selectedMovie, setSelectedMovie] = useState(null);
     const navigate = useNavigate();
     const { currentUser } = useAuth();
 
