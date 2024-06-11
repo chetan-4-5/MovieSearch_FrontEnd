@@ -139,20 +139,6 @@ const Home = () => {
                     ))}
                 </Row>
             </Container>
-            <Modal show={showDeleteModal} onHide={handleDeleteModalClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Delete Movie</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Are you sure you want to delete {selectedMovie?.title} from {selectedPlaylist?.name}?</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleDeleteModalClose}>
-                        Cancel
-                    </Button>
-                    <Button variant="danger" onClick={handleDeleteMovie}>
-                        Delete
-                    </Button>
-                </Modal.Footer>
-            </Modal>
         </div>
     );
 };
