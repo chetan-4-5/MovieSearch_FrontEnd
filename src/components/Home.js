@@ -27,7 +27,7 @@ const Home = () => {
 
     const fetchPlaylists = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/playlists/public');
+            const res = await axios.get('https://moviesearch-backend-b97z.onrender.com/api/playlists/public');
             setPlaylists(res.data);
         } catch (err) {
             console.error('Failed to fetch public playlists', err);
@@ -75,7 +75,7 @@ const Home = () => {
         try {
             console.log('Deleting movie:', selectedMovie);
             console.log('From playlist:', selectedPlaylist);
-            await axios.delete(`http://localhost:5000/api/playlists/${selectedPlaylist._id}/movies/${selectedMovie.imdbID}`);
+            await axios.delete(`https://moviesearch-backend-b97z.onrender.com/api/playlists/${selectedPlaylist._id}/movies/${selectedMovie.imdbID}`);
             setShowDeleteModal(false);
             fetchPlaylists(); // Refresh playlists after deletion
         } catch (err) {
