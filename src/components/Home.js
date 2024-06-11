@@ -61,27 +61,7 @@ const Home = () => {
         navigate('/signin');
     };
 
-    const handleDeleteModalClose = () => {
-        setShowDeleteModal(false);
-    };
 
-    const handleDeleteModalShow = (playlist, movie) => {
-        setSelectedPlaylist(playlist);
-        setSelectedMovie(movie);
-        setShowDeleteModal(true);
-    };
-
-    const handleDeleteMovie = async () => {
-        try {
-            console.log('Deleting movie:', selectedMovie);
-            console.log('From playlist:', selectedPlaylist);
-            await axios.delete(`https://moviesearch-backend-b97z.onrender.com/api/playlists/${selectedPlaylist._id}/movies/${selectedMovie.imdbID}`);
-            setShowDeleteModal(false);
-            fetchPlaylists(); // Refresh playlists after deletion
-        } catch (err) {
-            console.error('Failed to delete movie', err);
-        }
-    };
     
 
     return (
@@ -149,17 +129,6 @@ const Home = () => {
                                                     <Link to={`/movie/${movie.imdbID}`}>
                                                         {movie.title}
                                                     </Link>
-                                                    {playlist?.userId?._id === currentUser?._id && (
-    <Button
-        size="sm"
-        className="delete-button"
-        variant="light"
-        onClick={() => handleDeleteModalShow(playlist, movie)}
-    >
-        ❌
-    </Button>
-)}
-
                                                 </li>
                                             ))}
                                         </ul>
