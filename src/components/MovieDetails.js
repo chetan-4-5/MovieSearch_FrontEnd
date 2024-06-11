@@ -44,6 +44,7 @@ const MovieDetails = () => {
                     'x-auth-token': token
                 }
             });
+            fetchPlaylists();
             toast.success('Movie added to public playlist');
         } catch (error) {
             if (error.response) {
