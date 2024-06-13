@@ -6,7 +6,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Home.css';
 import withAuth from './withAuth';
-import { useAuth } from '../AuthContext';
+import { useAuth } from '../AuthContextProvider';
+
 
 const Home = () => {
     const [query, setQuery] = useState('');
