@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
             if (token) {
                 try {
                     const response = await axios.get('https://moviesearch-backend-b97z.onrender.com/api/user', {
-                        headers: { 'x-auth-token': token }
+                        headers: { 'x-auth-token': localStorage.getItem('token') || sessionStorage.getItem('token') }
                     });
                     console.log('AuthContext: API Response:', response.data); // Log the API response
                     setCurrentUser(response.data);
