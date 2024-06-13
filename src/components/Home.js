@@ -82,9 +82,6 @@ const Home = () => {
             setError('Failed to delete movie from public playlist');
         }
     };
-    console.log('currentUser:', currentUser);
-    console.log('playlists:', playlists);
-
 
     return (
         <div>
@@ -99,7 +96,16 @@ const Home = () => {
                     <Button variant="outline-light" onClick={handleSignOut}>Sign Out</Button>
                 </Navbar.Collapse>
             </Navbar>
+            
             <Container className="home-container">
+                {currentUser && (
+                    <Row className="my-4">
+                        <Col>
+                            <h3>Welcome, {currentUser.username}!</h3>
+                        </Col>
+                    </Row>
+                )}
+
                 <h1 className="text-center my-4">Search for Movies</h1>
                 <Form onSubmit={handleSearch} className="mb-4">
                     <Row>
