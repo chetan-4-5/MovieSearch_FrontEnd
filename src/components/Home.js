@@ -18,18 +18,14 @@ const Home = () => {
     const { currentUser } = useAuth();
 
     useEffect(() => {
-        console.log('Home: Current User:', currentUser); // Log the current user
         fetchPlaylists();
     }, [currentUser]);
 
     const fetchPlaylists = async () => {
         try {
-            console.log('Fetching public playlists');
             const res = await axios.get('https://moviesearch-backend-b97z.onrender.com/api/playlists/public');
-            console.log('Public playlists fetched:', res.data);
             setPlaylists(res.data);
         } catch (err) {
-            console.error('Failed to fetch public playlists', err);
             setError('Failed to fetch public playlists');
         }
     };
@@ -39,9 +35,7 @@ const Home = () => {
         setLoading(true);
         setError(null);
         try {
-            console.log(`Searching for movies with query: ${query}`);
             const res = await axios.get(`https://www.omdbapi.com/?apikey=6f1b1840&s=${query}`);
-            console.log('Movies fetched:', res.data);
             if (res.data.Response === 'True') {
                 setMovies(res.data.Search);
             } else {
@@ -49,7 +43,6 @@ const Home = () => {
                 setMovies([]);
             }
         } catch (err) {
-            console.error('Failed to fetch movies', err);
             setError('Failed to fetch movies');
             setMovies([]);
         } finally {
@@ -77,9 +70,8 @@ const Home = () => {
                 }
             });
             toast.success('Movie deleted from public playlist');
-            fetchPlaylists(); // Refresh playlists after deletion
+            fetchPlaylists();
         } catch (error) {
-            console.error('Failed to delete movie from public playlist', error);
             setError('Failed to delete movie from public playlist');
         }
     };
