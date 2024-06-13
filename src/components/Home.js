@@ -147,14 +147,16 @@ const Home = () => {
                                                     <Link to={`/movie/${movie.imdbID}`}>
                                                         {movie.title}
                                                     </Link>
-                                                    <Button
-                                                        variant="danger"
-                                                        size="sm"
-                                                        className="ms-2"
-                                                        onClick={() => handleDeleteFromPlaylist(playlist._id, movie._id)}
-                                                    >
-                                                        Delete
-                                                    </Button>
+                                                    {currentUser && playlist.userId._id === currentUser.id && (
+                                                        <Button
+                                                            variant="danger"
+                                                            size="sm"
+                                                            className="ms-2"
+                                                            onClick={() => handleDeleteFromPlaylist(playlist._id, movie._id)}
+                                                        >
+                                                            Delete
+                                                        </Button>
+                                                    )}
                                                 </li>
                                             ))}
                                         </ul>
