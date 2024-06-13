@@ -61,6 +61,27 @@ const Home = () => {
         navigate('/signin');
     };
 
+    const handleDeleteFromPlaylist = async (playlistId, movieId) => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                setError('Unauthorized. Please log in to delete from the playlist.');
+                return;
+            }
+
+            await axios.delete(`https://moviesearch-backend-b97z.onrender.com/api/playlists/public/${playlistId}/remove/${movieId}`, {
+                headers: {
+                    'x-auth-token': token
+                }
+            });
+            toast.success('Movie deleted from public playlist');
+            fetchPlaylists(); // Refresh playlists after deletion
+        } catch (error) {
+            console.error('Failed to delete movie from public playlist', error);
+            setError('Failed to delete movie from public playlist');
+        }
+    };
+
     return (
         <div>
             <Navbar bg="dark" variant="dark" expand="lg">
@@ -126,6 +147,14 @@ const Home = () => {
                                                     <Link to={`/movie/${movie.imdbID}`}>
                                                         {movie.title}
                                                     </Link>
+                                                    <Button
+                                                        variant="danger"
+                                                        size="sm"
+                                                        className="ms-2"
+                                                        onClick={() => handleDeleteFromPlaylist(playlist._id, movie._id)}
+                                                    >
+                                                        Delete
+                                                    </Button>
                                                 </li>
                                             ))}
                                         </ul>
