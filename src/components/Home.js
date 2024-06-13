@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Home.css';
 import withAuth from './withAuth';
-import { useAuth } from '../AuthContextProvider';
+import { useAuth } from '../AuthContext';
 
 
 const Home = () => {

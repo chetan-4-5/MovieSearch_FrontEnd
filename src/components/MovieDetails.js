@@ -64,7 +64,7 @@ const MovieDetails = () => {
     };
 
     const handleAddToPrivatePlaylist = async () => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token') || sessionStorage('token');
         if (!token) {
             setError('Unauthorized. Please log in to add to the playlist.');
             return;
