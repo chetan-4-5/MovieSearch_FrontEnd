@@ -36,7 +36,7 @@ const SignIn = () => {
                 localStorage.setItem('token', token);
                 console.log('Token stored in localStorage'); // Debugging line
             } else {
-                sessionStorage.setItem('token', token);
+                localStorage.setItem('token', token);
                 console.log('Token stored in sessionStorage'); // Debugging line
             }
 
