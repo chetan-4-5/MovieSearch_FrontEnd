@@ -19,7 +19,7 @@ const SignUp = () => {
                 password,
             });
             toast.success('Signup successful!');
-            navigate('/signin');
+            navigate('/home');
         } catch (err) {
             toast.error('Signup failed');
             console.error(err);

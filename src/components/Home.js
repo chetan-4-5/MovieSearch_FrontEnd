@@ -18,8 +18,9 @@ const Home = () => {
     const { currentUser } = useAuth();
 
     useEffect(() => {
+        console.log('Home: Current User:', currentUser); // Log the current user
         fetchPlaylists();
-    }, []);
+    }, [currentUser]);
 
     const fetchPlaylists = async () => {
         try {
