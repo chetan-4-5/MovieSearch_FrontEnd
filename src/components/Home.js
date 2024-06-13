@@ -82,6 +82,9 @@ const Home = () => {
             setError('Failed to delete movie from public playlist');
         }
     };
+    console.log('currentUser:', currentUser);
+    console.log('playlists:', playlists);
+
 
     return (
         <div>
