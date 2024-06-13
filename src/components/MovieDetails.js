@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Importing useNavigate
 import axios from 'axios';
 import { Container, Button, Row, Col } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './MovieDetails.css';
-import fetchPlaylists from './Home'
+import fetchPlaylists from './Home';
 
 const MovieDetails = () => {
     const { id } = useParams();
+    const navigate = useNavigate(); // Initializing useNavigate
     const [movie, setMovie] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -33,7 +34,7 @@ const MovieDetails = () => {
     }, [id]);
 
     const handleAddToPublicPlaylist = async () => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
         if (!token) {
             setError('Unauthorized. Please log in to add to the playlist.');
             return;
@@ -91,6 +92,10 @@ const MovieDetails = () => {
         }
     };
 
+    const handleGoBack = () => {
+        navigate('/home'); // Navigate to the home page when Go Back button is clicked
+    };
+
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -115,6 +120,9 @@ const MovieDetails = () => {
                     </Button>
                     <Button variant="secondary" onClick={handleAddToPrivatePlaylist}>
                         Add to Private Playlist
+                    </Button>
+                    <Button variant="outline-primary" onClick={handleGoBack} className="ms-2">
+                        Go Back
                     </Button>
                 </Col>
             </Row>
