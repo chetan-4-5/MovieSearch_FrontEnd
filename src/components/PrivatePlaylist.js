@@ -15,9 +15,11 @@ const PrivatePlaylist = () => {
     const fetchPrivatePlaylists = async () => {
         setLoading(true);
         try {
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            console.log('Token:', token);
             const res = await axios.get('https://moviesearch-backend-b97z.onrender.com/api/playlists/private', {
                 headers: {
-                    'x-auth-token': localStorage.getItem('token')
+                    'x-auth-token': localStorage.getItem('token') || sessionStorage.getItem('token')
                 }
             });
             console.log('Private playlists:', res.data); // Log the fetched playlists
