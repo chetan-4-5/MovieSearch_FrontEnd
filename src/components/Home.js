@@ -8,7 +8,6 @@ import './Home.css';
 import withAuth from './withAuth';
 import { useAuth } from '../AuthContext';
 
-
 const Home = () => {
     const [query, setQuery] = useState('');
     const [movies, setMovies] = useState([]);
@@ -30,6 +29,7 @@ const Home = () => {
             setPlaylists(res.data);
         } catch (err) {
             console.error('Failed to fetch public playlists', err);
+            setError('Failed to fetch public playlists');
         }
     };
 
@@ -44,7 +44,7 @@ const Home = () => {
             if (res.data.Response === 'True') {
                 setMovies(res.data.Search);
             } else {
-                setError(res.data.Error);
+                setError(res.data.Error || 'No movies found');
                 setMovies([]);
             }
         } catch (err) {
