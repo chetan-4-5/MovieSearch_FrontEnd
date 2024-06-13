@@ -5,10 +5,12 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchCurrentUser = async () => {
-            setLoading(true); // Assuming you have a setLoading function to handle loading state
+            setLoading(true);
             try {
                 const token = localStorage.getItem('token') || sessionStorage.getItem('token');
                 console.log('Token:', token); // Log the token for debugging
@@ -18,21 +20,20 @@ export const AuthProvider = ({ children }) => {
                     }
                 });
                 console.log('Current User:', res.data); // Log the fetched user data
-                setCurrentUser(res.data); // Assuming you have a setCurrentUser function to update the user state
+                setCurrentUser(res.data);
             } catch (err) {
                 console.error('Failed to fetch current user', err);
-                setError('Failed to fetch current user'); // Assuming you have a setError function to handle errors
+                setError(err.message || 'Failed to fetch current user');
             } finally {
-                setLoading(false); // Stop the loading state
+                setLoading(false);
             }
         };
-        
 
         fetchCurrentUser();
     }, []);
 
     return (
-        <AuthContext.Provider value={{ currentUser }}>
+        <AuthContext.Provider value={{ currentUser, loading, error }}>
             {children}
         </AuthContext.Provider>
     );
