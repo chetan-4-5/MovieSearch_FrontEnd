@@ -1,4 +1,3 @@
-// Home.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card, Navbar, Nav, Button, Form } from 'react-bootstrap';
@@ -24,7 +23,9 @@ const Home = () => {
 
     const fetchPlaylists = async () => {
         try {
+            console.log('Fetching public playlists');
             const res = await axios.get('https://moviesearch-backend-b97z.onrender.com/api/playlists/public');
+            console.log('Public playlists fetched:', res.data);
             setPlaylists(res.data);
         } catch (err) {
             console.error('Failed to fetch public playlists', err);
@@ -36,7 +37,9 @@ const Home = () => {
         setLoading(true);
         setError(null);
         try {
+            console.log(`Searching for movies with query: ${query}`);
             const res = await axios.get(`https://www.omdbapi.com/?apikey=6f1b1840&s=${query}`);
+            console.log('Movies fetched:', res.data);
             if (res.data.Response === 'True') {
                 setMovies(res.data.Search);
             } else {
