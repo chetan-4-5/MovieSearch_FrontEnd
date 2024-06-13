@@ -1,7 +1,7 @@
 // Home.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Form, Button, Row, Col, Card, Navbar, Nav, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Card, Navbar, Nav, Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -40,12 +40,12 @@ const Home = () => {
             if (res.data.Response === 'True') {
                 setMovies(res.data.Search);
             } else {
-                setError(res.data.Error); // Set specific error message from API
+                setError(res.data.Error);
                 setMovies([]);
             }
         } catch (err) {
             console.error('Failed to fetch movies', err);
-            setError('Failed to fetch movies'); // Generic error message
+            setError('Failed to fetch movies');
             setMovies([]);
         } finally {
             setLoading(false);
@@ -57,9 +57,6 @@ const Home = () => {
         toast.success('Signed out successfully');
         navigate('/signin');
     };
-
-
-    
 
     return (
         <div>
