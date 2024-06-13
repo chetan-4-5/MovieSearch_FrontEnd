@@ -1,20 +1,54 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './SignIn.css';
-import { useAuth } from '../AuthContext'; // Import useAuth hook from AuthContext
+
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
-    const { signIn, loading } = useAuth(); // Use signIn function from useAuth hook
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await signIn(email, password, rememberMe); // Call signIn function from useAuth
+        setLoading(true);
+        
+        try {
+            const res = await axios.post('https://moviesearch-backend-b97z.onrender.com/api/users/login', {
+                email,
+                password,
+            });
+
+            console.log('Server response:', res.data); // Debugging line
+
+            const { token } = res.data;
+
+            if (!token) {
+                throw new Error('Token not provided by server');
+            }
+
+            // Store the token in localStorage or sessionStorage based on 'Remember Me'
+            if (rememberMe) {
+                localStorage.setItem('token', token);
+                console.log('Token stored in localStorage'); // Debugging line
+            } else {
+                sessionStorage.setItem('token', token);
+                console.log('Token stored in sessionStorage'); // Debugging line
+            }
+
+            setLoading(false);
+            toast.success('Login successful!');
+            navigate('/home');
+        } catch (err) {
+            setLoading(false);
+            const errorMessage = err.response?.data?.message || 'Login failed';
+            toast.error(`Login failed: ${errorMessage}`);
+            console.error('Login error:', err);
+        }
     };
 
     return (
@@ -52,3 +86,6 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+    
+
