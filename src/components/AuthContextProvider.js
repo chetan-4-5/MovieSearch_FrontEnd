@@ -13,9 +13,9 @@ export const AuthProvider = ({ children }) => {
             const token = localStorage.getItem('token') || sessionStorage.getItem('token'); // Assuming token is stored in localStorage
             if (token) {
                 try {
-                    const response = await axios.get('/api/user', {
+                    const response = await axios.get('https://moviesearch-backend-b97z.onrender.com/api/user', {
                         headers: {
-                            Authorization: `Bearer ${token}`
+                            'x-auth-token': `Bearer ${token}`
                         }
                     });
                     setCurrentUser(response.data.user); // Assuming response returns user data
