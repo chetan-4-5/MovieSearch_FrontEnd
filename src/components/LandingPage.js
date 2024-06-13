@@ -10,7 +10,7 @@ const LandingPage = () => {
     return (
         <div className="landing-page">
             <Container className="text-center">
-                <h1 className="landing-title">Welcome to Movie Search</h1>
+                <h1 className="landing-title">Fun with Friend/Family (FwF)</h1>
                 <p className="landing-subtitle">Discover your favorite movies with ease</p>
                 <Row className="justify-content-center">
                     <Col xs={12} md={6} lg={3}>
