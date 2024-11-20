@@ -94,11 +94,11 @@ const Home = () => {
                 {currentUser && (
                     <Row className="my-4">
                         <Col>
-                        {currentUser ? (
-        <h3>Welcome, {currentUser.username}!</h3>
-      ) : (
-        <h3>Loading user information...</h3>
-      )}
+                            {currentUser ? (
+                                <h3>Welcome, {currentUser.username}!</h3>
+                            ) : (
+                                <h3>Loading user information...</h3>
+                            )}
                         </Col>
                     </Row>
                 )}
